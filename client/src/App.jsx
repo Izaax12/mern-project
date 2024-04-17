@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
 import SignUp from './pages/SignUp';
 import Header from './components/Header';
-
 import React from 'react'
 
 function App() {
@@ -24,5 +23,4 @@ function App() {
     </BrowserRouter>
   )
 }
-
 export default App
