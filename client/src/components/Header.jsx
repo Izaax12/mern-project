@@ -1,8 +1,8 @@
-import { Navbar, TextInput, Button } from 'flowbite-react'
-import { Link, useLocation } from 'react-router-dom'
-import { AiOutlineSearch } from 'react-icons/ai'
-import { FaMoon } from 'react-icons/fa'
-import React from 'react'
+import { Navbar, TextInput, Button } from 'flowbite-react';
+import { Link, useLocation } from 'react-router-dom';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { FaMoon } from 'react-icons/fa';
+//import React from 'react'
 
 function Header() {
   const path = useLocation().pathname;
