@@ -1,5 +1,5 @@
 //import React from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Label, TextInput, Button, Alert, Spinner } from 'flowbite-react'
 import { useState } from 'react'
 
@@ -83,7 +83,7 @@ function SignUp() {
           </form>
           <div className='flex gap-2 text-sm mt-5'>
             <span>Ya tienes una cuenta?</span>
-            <Link to='/sign-in' className='text-to-blue-500'>Sign in</Link>
+            <Link to='/sign-in' className='text-to-blue-500'>Iniciar Sesión</Link>
           </div>
           {
             errorMessage && (

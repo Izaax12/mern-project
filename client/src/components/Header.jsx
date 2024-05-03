@@ -29,7 +29,7 @@ function Header() {
             </Button>
           <Link to = "/sign-in">
             <Button gradientDuoTone='purpleToBlue' outline>
-             Sign In
+             Iniciar Sesión
             </Button>
           </Link>
           <Navbar.Toggle/>
