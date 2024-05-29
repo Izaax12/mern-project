@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 export default function ThemeProvider({children}) {
     const {theme} = useSelector(state => state.theme);
@@ -12,6 +12,6 @@ export default function ThemeProvider({children}) {
   )
 } 
 
-ThemeProvider.PropTypes = {
-  children: PropTypes.node
+ThemeProvider.propTypes = {
+  children: propTypes.node
 };
