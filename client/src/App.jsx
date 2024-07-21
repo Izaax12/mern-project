@@ -8,6 +8,8 @@ import SignUp from './pages/SignUp';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
+import OnlyeAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
+import CreatePost from './pages/CreatePost';
 //import React from 'react'
 
 function App() {
@@ -21,6 +23,9 @@ function App() {
         <Route path='/sign-up' element={<SignUp />} />
         <Route element={<PrivateRoute/>}>
           <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
+        <Route element={<OnlyeAdminPrivateRoute/>}>
+          <Route path='/create-post' element={<CreatePost />} />
         </Route>
         <Route path='/projects' element={<Projects />}/>
       </Routes>
