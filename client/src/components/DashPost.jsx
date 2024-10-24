@@ -34,7 +34,7 @@ export default function DashPost() {
   const handleShowMore = async () =>{
     const startIndex = userPosts.length;
     try {
-      const res = await fetch(`{/api/post/gestposts?userId=${currentUser._id}&startIndex=${startIndex}}`);
+      const res = await fetch(`/api/post/gestposts?userId=${currentUser._id}&startIndex=${startIndex}`);
       const data = await res.json();
       if(res.ok){
         setUserPosts((prev)=>[...prev, ...data.posts]);
