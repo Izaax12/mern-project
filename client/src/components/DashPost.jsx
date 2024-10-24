@@ -1,12 +1,14 @@
-import { Table } from "flowbite-react";
+import { Table, Modal } from "flowbite-react";
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashPost() {
   const {currentUser} = useSelector((state)=>state.user); 
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   console.log(userPosts);
 
   useEffect(()=>{
@@ -45,6 +47,10 @@ export default function DashPost() {
     }
   }
 
+  const handleDeletePost = async() => {
+
+  }; 
+
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar-track-slate-100 
       scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-track-slate-500">
@@ -80,7 +86,10 @@ export default function DashPost() {
                 </Table.Cell>
                 <Table.Cell>{post.category}</Table.Cell>
                 <Table.Cell>
-                  <span className="font-medium text-red-500 hover:underline cursor-pointer">Borrar</span>
+                  <span onClick={handleDeletePost}
+                    className="font-medium text-red-500 hover:underline cursor-pointer">
+                    Borrar
+                  </span>
                 </Table.Cell>
                 <Table.Cell>
                   <Link className='text-teal-500 hover:underline' to ={`/update-post/${post._id}`}>
@@ -102,6 +111,19 @@ export default function DashPost() {
       ):(
         <p>Aún no tienes posts</p>
       )}
+      <Modal show={showModal} onClose={()=>setShowModal(false)} popup size='md'>
+            <Modal.Header/>
+            <Modal.Body>
+                <div className='text-center'>
+                    <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto'/>
+                    <h3>Estas seguro que quieres eliminar este post?</h3>
+                    <div className='flex justify-center gap-4'>
+                        <button color='failure' onClick={handleDeletePost}>Si</button>
+                        <button color='gray' onClick={()=>setShowModal(false)}>Cancelar</button>
+                    </div>
+                </div>
+            </Modal.Body>
+        </Modal>
     </div>
   )
 }

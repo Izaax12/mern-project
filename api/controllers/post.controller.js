@@ -69,3 +69,15 @@ export const getposts = async (req, res , next) => {
         next(error);
     }
 }
+
+export const deletepost = async (req, res, next) =>{
+    if(!req.user.isAdmin || req.user.id !== req.params.userId){
+        return next(errorHandler(403, 'No tienes permiso para borrar este post'));
+    }
+    try {
+        await Post.findByIdAndDelete(req.params.postId);
+        res.status(200).json('El post ha sido borrado');
+    } catch (error) {
+        next(error);
+    }
+}
