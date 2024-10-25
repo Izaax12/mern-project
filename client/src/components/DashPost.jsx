@@ -9,6 +9,7 @@ export default function DashPost() {
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState(' ');
   console.log(userPosts);
 
   useEffect(()=>{
@@ -48,8 +49,23 @@ export default function DashPost() {
   }
 
   const handleDeletePost = async() => {
-
-  }; 
+    setShowModal(false);
+    try{
+      const res = await fetch(`/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+      if(!res.ok){
+        console.log(data.message);
+      }else{
+        setUserPosts((prev) => prev.filter((post)=>post._id !== postIdToDelete));
+      }
+    }catch(error){
+      console.log(error);
+    }
+  } 
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar-track-slate-100 
@@ -86,7 +102,8 @@ export default function DashPost() {
                 </Table.Cell>
                 <Table.Cell>{post.category}</Table.Cell>
                 <Table.Cell>
-                  <span onClick={handleDeletePost}
+                  <span onClick={()=>{setShowModal(true); setPostIdToDelete(post._id);
+                  }}
                     className="font-medium text-red-500 hover:underline cursor-pointer">
                     Borrar
                   </span>
