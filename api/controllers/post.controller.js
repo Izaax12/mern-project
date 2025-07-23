@@ -3,10 +3,17 @@ import { errorHandler } from '../utils/error.js';
 
 export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
+<<<<<<< HEAD
     return next(errorHandler(403, 'You are not allowed to create a post'));
   }
   if (!req.body.title || !req.body.content) {
     return next(errorHandler(400, 'Please provide all required fields'));
+=======
+    return next(errorHandler(403, 'No tienes permisos para crear un post'));
+  }
+  if (!req.body.title || !req.body.content) {
+    return next(errorHandler(400, 'Proporciona todos los campos'));
+>>>>>>> d6118eb72d320ae0ec62d15f4d0474997a7c853e
   }
   const slug = req.body.title
     .split(' ')
@@ -73,11 +80,19 @@ export const getposts = async (req, res, next) => {
 
 export const deletepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+<<<<<<< HEAD
     return next(errorHandler(403, 'You are not allowed to delete this post'));
   }
   try {
     await Post.findByIdAndDelete(req.params.postId);
     res.status(200).json('The post has been deleted');
+=======
+    return next(errorHandler(403, 'No tienes permisos para borrar este post'));
+  }
+  try {
+    await Post.findByIdAndDelete(req.params.postId);
+    res.status(200).json('Post borrado!');
+>>>>>>> d6118eb72d320ae0ec62d15f4d0474997a7c853e
   } catch (error) {
     next(error);
   }
@@ -85,7 +100,11 @@ export const deletepost = async (req, res, next) => {
 
 export const updatepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+<<<<<<< HEAD
     return next(errorHandler(403, 'You are not allowed to update this post'));
+=======
+    return next(errorHandler(403, 'No tienes permiso para actualizar/modificar este post!'));
+>>>>>>> d6118eb72d320ae0ec62d15f4d0474997a7c853e
   }
   try {
     const updatedPost = await Post.findByIdAndUpdate(
